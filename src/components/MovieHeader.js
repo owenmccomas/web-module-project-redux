@@ -1,10 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const MovieHeader = (props) => {
-    const appTitle = "";
-    const displayFavorites = true;
+    const { appTitle } = props;
+    let displayFavorites = true;
     
+    const toggleFavStatus = () => {
+        displayFavorites = !displayFavorites
+    }
+
     return(<div className="table-title">
         <div className="row">
         <div className="col-sm-6">
@@ -19,4 +24,11 @@ const MovieHeader = (props) => {
     </div>);
 }
 
-export default MovieHeader;
+const mapStateToProps = (state) => {
+    return({
+        movies: state.movies,
+        appTitle: "IMDB Movie Database"
+    })
+}
+
+export default connect(mapStateToProps)(MovieHeader);

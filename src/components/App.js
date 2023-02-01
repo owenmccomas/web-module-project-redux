@@ -8,6 +8,8 @@ import Movie from './Movie';
 
 import MovieHeader from './MovieHeader';
 
+import movies from "../data";
+
 import AddMovieForm from './AddMovieForm';
 import FavoriteMovieList from './FavoriteMovieList';
 
@@ -22,7 +24,7 @@ const App = props => {
 
       <div className="container">
         <MovieHeader/>
-        <div className="row ">
+        <div className="row">
           {displayFavorites && <FavoriteMovieList/>}
         
           <Switch>
@@ -48,4 +50,11 @@ const App = props => {
   );
 };
 
-export default App;
+  const mapPropsToState = () => {
+    return{
+    movies: movies,
+    appTitle: "IMDB Movie Database",
+    // displayFavorites: false
+  }}
+
+export default connect(mapPropsToState)(App);
